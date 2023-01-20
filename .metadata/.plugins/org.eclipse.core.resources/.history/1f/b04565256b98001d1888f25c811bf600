@@ -1,0 +1,2 @@
+spring.application.name=shop-service
+spring.cloud.config.uri=https://github.com/chabbanadir/Ko-fi-spring-config

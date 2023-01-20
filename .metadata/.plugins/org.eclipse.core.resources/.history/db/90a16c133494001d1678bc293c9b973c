@@ -1,0 +1,5 @@
+package com.kofi.repository;
+
+public class UserRepository {
+
+}

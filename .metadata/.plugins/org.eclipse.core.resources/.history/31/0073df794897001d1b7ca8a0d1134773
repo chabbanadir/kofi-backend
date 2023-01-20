@@ -1,0 +1,57 @@
+package service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+
+import models.Shop;
+import repository.ShopRepository;
+
+@Service
+public class ShopServiceImpl implements ShopService {
+
+    private final ShopRepository repository;
+    private final RestTemplate restTemplate;
+
+    public ShopServiceImpl(ShopRepository repository, RestTemplate restTemplate) {
+        this.repository = repository;
+        this.restTemplate = restTemplate;
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
+    public Shop updateShop(Long id, Shop shop) {
+        if (!existsById(id)) {
+            //return appropriate response like NOT_FOUND
+        }
+        return repository.save(shop);
+    }
+    
+    @Override
+    public Map<String, Object> getShopWithUser(Long id) {
+        java.util.Optional<Shop> shopOptional = repository.findById(id);
+        if (!shopOptional.isPresent()) {
+            //return appropriate response like NOT_FOUND
+        }
+        Shop shop = shopOptional.get();
+        @SuppressWarnings("unchecked")
+		Map<String, Object> userData = restTemplate.getForObject("http://user-service/users/" + shop.getUserId(), Map.class);
+        Map<String, Object> result = new HashMap<>();
+        result.put("shop", shop);
+        result.put("user", userData);
+        return result;
+    }
+
+	@Override
+	public Shop createShop(Shop shop) {
+		// TODO Auto-generated method stub
+		return repository.save(shop);
+	}
+}

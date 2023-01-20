@@ -1,0 +1,12 @@
+package service;
+
+import java.util.Map;
+
+import models.Shop;
+
+public interface ShopService {
+    boolean existsById(Long id);
+    Shop updateShop(Long id, Shop shop);
+    Map<String, Object> getShopWithUser(Long id);
+	Shop createShop(Shop shop) ;
+}

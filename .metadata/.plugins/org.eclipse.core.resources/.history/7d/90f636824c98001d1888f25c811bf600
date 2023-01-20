@@ -1,0 +1,5 @@
+package com.kofi.models;
+
+public class Article {
+
+}

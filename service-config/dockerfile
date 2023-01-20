@@ -1,0 +1,4 @@
+FROM openjdk:17
+COPY service-config/target/service-config /app.jar
+EXPOSE 8888
+ENTRYPOINT ["java","-Dserver.port=8888","-jar","/app.jar"]

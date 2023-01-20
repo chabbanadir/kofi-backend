@@ -1,0 +1,2 @@
+spring.application.name=user-service
+spring.cloud.import=configserver:http://localhost:8089

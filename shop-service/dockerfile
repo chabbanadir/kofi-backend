@@ -1,0 +1,4 @@
+FROM openjdk:17
+COPY service-config/target/shop-service /app.jar
+EXPOSE 8082
+ENTRYPOINT ["java","-Dserver.port=8082","-jar","/app.jar"]

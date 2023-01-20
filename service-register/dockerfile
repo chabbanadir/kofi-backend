@@ -1,0 +1,4 @@
+FROM openjdk:17
+COPY service-config/target/service-register /app.jar
+EXPOSE 8761
+ENTRYPOINT ["java","-Dserver.port=8761","-jar","/app.jar"]

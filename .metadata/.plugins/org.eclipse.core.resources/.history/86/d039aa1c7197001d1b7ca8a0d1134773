@@ -1,0 +1,38 @@
+package com.kofi.controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.kofi.models.Shop;
+import com.kofi.service.ShopService;
+
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/shops")
+public class ShopController {
+    @Autowired
+    private ShopService shopService;
+
+    @PostMapping("/shops")
+    public Shop createShop(@RequestBody Shop shop) {
+        return shopService.createShop(shop);
+    }
+
+    @PutMapping
+    public Shop updateShop(@RequestBody Shop shop) {
+        return shopService.updateShop(shop) ;
+    }
+
+    @GetMapping("/{id}")
+    public Shop getShop(@PathVariable Long id) {
+        return shopService.getShop(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteShop(@PathVariable Long id) {
+    	shopService.deleteShop(id);
+    }
+
+    @GetMapping
+    public Iterable<Shop> getAllShop() {
+        return shopService.getAllShops();
+    }
+}

@@ -1,0 +1,5 @@
+package com.kofi.controller;
+
+public class UserController {
+
+}

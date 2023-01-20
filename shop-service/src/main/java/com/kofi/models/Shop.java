@@ -1,0 +1,108 @@
+package com.kofi.models;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "shops")
+public class Shop {
+
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+    
+    @Override
+	public String toString() {
+		return "Shop [id=" + id + ", userid=" + userid + ", name=" + name + ", category=" + category + ", articles="
+				+ articles + "]";
+	}
+
+
+	@JsonProperty("userid")
+	@Column(nullable = true)
+	private Long userid;
+
+	@Column(nullable = true)
+	private String name;
+
+	@Column(nullable = true)
+	private String category;
+
+	@OneToMany(mappedBy = "shop" , cascade = CascadeType.ALL)
+	@Column(nullable = true)
+	@JsonManagedReference
+	private List<Article>  articles;
+
+
+	public Shop() {}
+
+
+	public Shop(String name, Long userid,String category,List<Article> articles) {
+		super();
+		this.userid = userid;
+		this.category = category;
+		this.name = name;
+		this.articles = articles;
+	}
+    
+    
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public Long getUserid() {
+		return userid;
+	}
+
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+
+
+	public void setIdsarticles(List<Article> articles) {
+		this.articles = articles;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+
+}

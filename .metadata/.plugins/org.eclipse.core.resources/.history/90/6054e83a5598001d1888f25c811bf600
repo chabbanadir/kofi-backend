@@ -1,0 +1,39 @@
+package com.kofi.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kofi.models.Article;
+import com.kofi.models.Shop;
+import com.kofi.repository.ArticleRepository;
+
+@Service
+public class ArticleService {
+	
+	@Autowired
+	private ArticleRepository articleRepository;
+	private ShopService shopService;
+	
+	public Article createArticle (Article article, Long id) {
+	Shop shop = shopService.getShop(id); 
+	article.setShop(shop);
+		return articleRepository.save(article);
+	}
+	
+	public Article updateArticle (Article article) {
+		return articleRepository.save(article);
+	}
+	
+	public Article getArtcile(long id) {
+		return articleRepository.findById(id).orElse(null);
+	}
+	
+	public void deleteArticle (Long id) {
+		articleRepository.deleteById(id);
+	}
+	
+	public Iterable<Article> getAllArticles(){
+		return articleRepository.findAll();
+	}
+
+}

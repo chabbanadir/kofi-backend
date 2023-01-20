@@ -1,0 +1,5 @@
+package com.kofi.service;
+
+public class UserService {
+
+}

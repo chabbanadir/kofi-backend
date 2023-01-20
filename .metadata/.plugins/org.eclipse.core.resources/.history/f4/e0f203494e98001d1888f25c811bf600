@@ -1,0 +1,18 @@
+package com.kofi.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kofi.models.Article;
+import com.kofi.repository.ArticleRepository;
+
+@Service
+public class ArticleService {
+	
+	@Autowired
+	private ArticleRepository articleRepository;
+	
+	public Article createarticle ( article) {
+		
+	}
+}

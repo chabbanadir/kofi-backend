@@ -1,0 +1,32 @@
+package controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+
+
+import models.Shop;
+import service.ShopService;
+
+@RestController
+@RequestMapping("/shops")
+public class ShopController {
+	 @Autowired
+    private ShopService service;
+
+    @PostMapping
+    public Shop createUser(@RequestBody Shop shop) {
+        return ShopService.createShop(shop);
+    }
+    
+    @PutMapping("/{id}")
+    public Shop updateShop(@PathVariable Long id, @RequestBody Shop shop) {
+        return service.updateShop(id, shop);
+    }
+    @GetMapping("/{id}/user")
+    public Map<String, Object> getShopWithUser(@PathVariable Long id) {
+        return service.getShopWithUser(id);
+    }
+}

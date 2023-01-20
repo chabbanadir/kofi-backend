@@ -1,0 +1,4 @@
+FROM openjdk:17
+COPY service-config/target/service-gatway /app.jar
+EXPOSE 8083
+ENTRYPOINT ["java","-Dserver.port=8083","-jar","/app.jar"]
